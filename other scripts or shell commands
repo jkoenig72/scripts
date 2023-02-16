@@ -1,3 +1,12 @@
 rsync -avzh --progress root@192.168.10.104:/mnt/share/Movies /mnt/share
 rsync -avzh --progress root@192.168.10.104:/mnt/share/IncomingMovies /mnt/share
 rsync -avzh --progress root@192.168.10.104:/mnt/share/TVShows /mnt/share
+
+
+service middlewared restart
+service nginx restart
+
+mv /etc/apt/sources.list.d/pve-enterprise.list /etc/apt/pve-enterprise.list
+echo deb http://download.proxmox.com/debian stretch pve-no-subscription > /etc/apt/sources.list.d/pve-no-subscription.list
+sed -i.bak 's/\/nodes\/localhost\/subscription/\/version/g' /usr/share/javascript/proxmox-widget-toolkit/proxmoxlib.js
+
